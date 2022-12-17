@@ -2,12 +2,14 @@
   <div id="app">
     <div id="root" v-show="istimeexpired">
       <BaseTimer v-bind:time-left="timeLeft" v-bind:time-limit="timeLimit" />
+      <ExpiredModal></ExpiredModal>
     </div>
   </div>
 </template>
 
 <script>
 import BaseTimer from "./BaseTimer.vue";
+import ExpiredModal from "./ExpiredModal.vue";
 
 const TIME_LIMIT = 10;
 
@@ -16,6 +18,7 @@ export default {
 
   components: {
     BaseTimer,
+    ExpiredModal,
   },
 
   data() {
