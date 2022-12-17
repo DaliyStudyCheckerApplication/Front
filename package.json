@@ -13,7 +13,8 @@
     "core-js": "^3.8.3",
     "path": "^0.12.7",
     "stream": "^0.0.2",
-    "vue": "^3.2.45"
+    "vue": "^3.2.45",
+    "vue-circular-count-down-timer": "^2.0.0"
   },
   "devDependencies": {
     "@babel/core": "^7.12.16",

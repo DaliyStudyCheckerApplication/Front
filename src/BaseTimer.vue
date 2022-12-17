@@ -6,12 +6,7 @@
       xmlns="http://www.w3.org/2000/svg"
     >
       <g class="base-timer__circle">
-        <circle
-          class="base-timer__path-elapsed"
-          cx="50"
-          cy="50"
-          r="45"
-        ></circle>
+        <circle class="base-timer__path-elapsed" cx="0" cy="0" r="500"></circle>
         <path
           :stroke-dasharray="circleDasharray"
           class="base-timer__path-remaining"
@@ -25,11 +20,20 @@
         ></path>
       </g>
     </svg>
-    <span class="base-timer__label">{{ formattedTimeLeft }}</span>
+    <span class="base-timer__label" v-on:click="postmember">{{
+      formattedTimeLeft
+    }}</span>
+  </div>
+  <div>
+    <circular-count-down-timer
+      :initial-value="200"
+      :steps="400"
+    ></circular-count-down-timer>
   </div>
 </template>
 
 <script>
+import axios from "axios";
 const FULL_DASH_ARRAY = 283;
 
 export default {
@@ -103,6 +107,31 @@ export default {
       } else {
         return info.color;
       }
+    },
+  },
+  components: {},
+  methods: {
+    postmember: function () {
+      console.log("POST요청");
+      const API_URL = "/api/v1/check_study";
+      // Make a request for a user with a given ID
+
+      axios
+        .post(API_URL, {
+          memberId: 1,
+        })
+        .then(function (response) {
+          // handle success
+          console.log(response);
+        })
+        .catch(function (error) {
+          // handle error
+          console.log(error);
+        })
+        .finally(function () {
+          // always executed
+          console.log("excuted!");
+        });
     },
   },
 };
