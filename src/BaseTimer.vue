@@ -1,5 +1,5 @@
 <template>
-  <div class="base-timer">
+  <div class="base-timer" v-on:click="postmember">
     <svg
       class="base-timer__svg"
       viewBox="0 0 100 100"
@@ -20,16 +20,9 @@
         ></path>
       </g>
     </svg>
-    <span class="base-timer__label" v-on:click="postmember">{{
-      formattedTimeLeft
-    }}</span>
+    <span class="base-timer__label">{{ formattedTimeLeft }}</span>
   </div>
-  <div>
-    <circular-count-down-timer
-      :initial-value="200"
-      :steps="400"
-    ></circular-count-down-timer>
-  </div>
+  <div></div>
 </template>
 
 <script>
@@ -37,6 +30,9 @@ import axios from "axios";
 const FULL_DASH_ARRAY = 283;
 
 export default {
+  data() {
+    return {};
+  },
   props: {
     alertThreshold: {
       type: Number,
@@ -130,7 +126,6 @@ export default {
         })
         .finally(function () {
           // always executed
-          console.log("excuted!");
         });
     },
   },

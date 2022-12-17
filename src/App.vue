@@ -1,30 +1,28 @@
 <template>
   <div id="app">
-    <div id="root">
-      <BaseTimer :time-left="timeLeft" :time-limit="timeLimit" />
-      <CheckButton id="check-button"></CheckButton>
+    <div id="root" v-show="istimeexpired">
+      <BaseTimer v-bind:time-left="timeLeft" v-bind:time-limit="timeLimit" />
     </div>
   </div>
 </template>
 
 <script>
 import BaseTimer from "./BaseTimer.vue";
-import CheckButton from "./CheckButton.vue";
 
-const TIME_LIMIT = 20;
+const TIME_LIMIT = 10;
 
 export default {
   name: "App",
 
   components: {
     BaseTimer,
-    CheckButton,
   },
 
   data() {
     return {
       timePassed: 0,
       timerInterval: null,
+      istimeexpired: true,
     };
   },
 
@@ -42,6 +40,7 @@ export default {
     timeLeft(newValue) {
       if (newValue === 0) {
         this.onTimesUp();
+        this.istimeexpired = false;
       }
     },
   },
@@ -53,6 +52,7 @@ export default {
   methods: {
     onTimesUp() {
       clearInterval(this.timerInterval);
+      this.istimeexpired = true;
     },
 
     startTimer() {
