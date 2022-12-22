@@ -63,8 +63,6 @@ div {
 .black-bg {
   width: 50%;
   height: 50%;
-  background: rgba(0, 0, 0, 0.5);
-  position: fixed;
   padding: 20px;
   display: flex;
   justify-content: center;
@@ -73,7 +71,7 @@ div {
 .white-bg {
   width: 70%;
   height: 70%;
-  background: white;
+  background: rgb(218, 218, 218);
   border-radius: 8px;
   padding: 20px;
 }
