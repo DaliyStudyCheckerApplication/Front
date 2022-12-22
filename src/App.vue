@@ -1,17 +1,24 @@
 <template>
   <div id="app">
-    <div id="root" v-show="istimeexpired">
-      <BaseTimer v-bind:time-left="timeLeft" v-bind:time-limit="timeLimit" />
-      <ExpiredModal></ExpiredModal>
+    <div id="root">
+      <div v-show="istimeexpired">
+        <BaseTimer v-bind:time-left="timeLeft" v-bind:time-limit="timeLimit" />
+      </div>
+    </div>
+    <div class="root-modal" v-show="!istimeexpired">
+      <ExpiredModal
+        v-bind:time-left="timeLeft"
+        v-bind:time-limit="timeLimit"
+      ></ExpiredModal>
     </div>
   </div>
 </template>
 
 <script>
-import BaseTimer from "./BaseTimer.vue";
-import ExpiredModal from "./ExpiredModal.vue";
+import BaseTimer from "./components/BaseTimer.vue";
+import ExpiredModal from "./components/ExpiredModal.vue";
 
-const TIME_LIMIT = 10;
+const TIME_LIMIT = 5;
 
 export default {
   name: "App",
@@ -78,17 +85,18 @@ body {
   color: #2c3e50;
   margin-top: 60px;
   display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  flex-flow: column;
   width: 100%;
 }
 #root {
   display: flex;
   flex-flow: column;
+  justify-content: center;
+  align-items: center;
 }
 
-#check-button {
-  margin-top: 20px;
+#root-modal {
+  justify-content: center;
+  /* align-items: center; */
 }
 </style>
